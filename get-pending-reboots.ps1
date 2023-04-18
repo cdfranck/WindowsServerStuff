@@ -22,7 +22,7 @@ $pendingRebootTests = @(
 $serverlist = get-content "c:\temp\servers.txt"
 
 foreach ($server in $serverlist) {
-$session = New-PSSession -Computer SRV1
+$session = New-PSSession -Computer $server
 foreach ($test in $pendingRebootTests) {
     $result = Invoke-Command -Session $session -ScriptBlock $test.Test
     if ($test.TestType -eq 'ValueExists' -and $result) {
